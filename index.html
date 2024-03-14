@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empirical Rule Calculator (68-95-99.7 Rule) - Results & Steps to Solve</title>
+</head>
+<body>
+<style>
+.riturajps_ERC_container {
+    max-width: 400px;
+    margin: 12px auto;
+    padding: 12px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1{
+    text-align: center;
+    color: #007bff;
+    font-size: 1.5rem;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.riturajps_ERC_label {
+    font-weight: bold;
+}
+
+.riturajps_ERC_input[type="number"], .riturajps_ERC_Btn {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.riturajps_ERC_Btn {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.riturajps_ERC_Btn:hover {
+    background-color: #0056b3;
+}
+
+#riturajps_ERC_results {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+</style>
+    <div class="riturajps_ERC_container">
+        <h1>Empirical Rule Calculator</h1>
+        <label class="riturajps_ERC_label" for="mean">Mean:</label>
+        <input class="riturajps_ERC_input" type="number" id="mean" placeholder="Enter mean...">
+        <label class="riturajps_ERC_label" for="stdDev">Standard Deviation:</label>
+        <input class="riturajps_ERC_input" type="number" id="stdDev" placeholder="Enter standard deviation...">
+        <button class="riturajps_ERC_Btn" onclick="calculate()">Calculate</button>
+        <div id="riturajps_ERC_results"></div>
+    </div>
+<script>
+function calculate() {
+    var mean = parseFloat(document.getElementById('mean').value);
+    var stdDev = parseFloat(document.getElementById('stdDev').value);
+    
+    if (isNaN(mean) || isNaN(stdDev)) {
+        alert("Please enter valid numbers for Mean and Standard Deviation.");
+        return;
+    }
+
+    var result = document.getElementById('riturajps_ERC_results');
+    result.innerHTML = ''; // Clear Previous Results
+
+    var part1_lower = mean - stdDev;
+    var part1_upper = mean + stdDev;
+
+    var part2_lower = mean - (2 * stdDev);
+    var part2_upper = mean + (2 * stdDev);
+
+    var part3_lower = mean - (3 * stdDev);
+    var part3_upper = mean + (3 * stdDev);
+
+    var output = "<h2>Empirical Rule Results:</h2>";
+    output += "<p>68% of the data is between = " + part1_lower.toFixed(2) + " and " + part1_upper.toFixed(2) + "</p>";
+    output += "<p>95% of the data is between = " + part2_lower.toFixed(2) + " and " + part2_upper.toFixed(2) + "</p>";
+    output += "<p>99.7% of the data is between = " + part3_lower.toFixed(2) + " and " + part3_upper.toFixed(2) + "</p>";
+
+    output += "<h2>Steps to Solve</h2>";
+    output += "<p>mean (μ) = " + mean + ", standard dev (σ) = " + stdDev + "</p>";
+    output += "<p><b>Part 1:</b> First of all we have to calculate the data falls between 68% :- μ - σ , μ + σ</p>";
+    output += "<p>" + mean + " - " + stdDev + " = " + part1_lower + "<br>" + mean + " + " + stdDev + " = " + part1_upper + "</p>";
+
+    output += "<p><b>Part 2:</b> Now we have to calculate the data falls between 95% :- μ - 2σ , μ + 2σ</p>";
+    output += "<p>" + mean + " - (2 × " + stdDev + ") = " + part2_lower + "<br>" + mean + " + (2 × " + stdDev + ") = " + part2_upper + "</p>";
+
+    output += "<p><b>Part 3:</b> And then we have to calculate the data falls between 99.7% :- μ - 3σ , μ + 3σ</p>";
+    output += "<p>" + mean + " - (3 × " + stdDev + ") = " + part3_lower + "<br>" + mean + " + (3 × " + stdDev + ") = " + part3_upper + "</p>";
+
+    result.innerHTML = output;
+}
+</script>
+</body>
+</html>
